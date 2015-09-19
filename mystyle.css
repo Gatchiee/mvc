@@ -1,0 +1,38 @@
+* { padding: 0px; margin: 0px; }
+body { background-color: #E6E6E6; font-family:Century Gothic;clear: both;min-height: 400px; margin-bottom: 100px;}
+#wrapper { padding: 10px; 
+	margin: 0px auto;
+}
+#header { overflow: hidden; background-color: white; margin: -10px -10px 10px -10px;}
+#content { overflow: hidden; background-color: white; margin: 10px -10px 10px -10px; padding: 10px 20px 10px 20px;}
+#footer {overflow: hidden; background-color: white; margin: 10px -10px -10px -10px; padding: 20px;position:fixed;bottom:0;}
+#footer p{font-size:12px; margin-top:10px;}
+#footer p a{text-decoration:none;}
+#footer p a:visited{color:black;}
+img{
+	width:100%;
+}
+
+.alibabatobuyoool{width:8%; margin-right:37px;}
+.cosplaytodaki{width:14%; margin-right:37px;}
+.kigu{width:14%;}
+
+
+.left {
+    overflow: hidden;
+	width: 30%;
+    height: 100px;
+	float: left;
+}
+.right {
+    float: right;
+    width:70%;
+	float:right;
+}
+#menu { display: inline-block; width: 100%; list-style-type: none; background-color: #fff; }
+#menu li { list-style-type: none; float: left; padding: 10px; background-color:  #fff; display; font-family:Century Gothic; font-size:12px;}
+#menu li a { color: #333; text-decoration: none; }
+table { width: 75%; border-bottom: 1px solid #333; }
+table thead tr th { background-color: gray; color: #fff; text-align: center; font-family:Century Gothic; font-size:14px;}
+
+.center { text-align: center; }
