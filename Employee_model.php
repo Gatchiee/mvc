@@ -1,9 +1,15 @@
 <?php
 //Employees_model.php
 
-function add_Employees($data){
+function add_Employees(){
+if( $_SERVER['REQUEST_METHOD']=='POST' ){
+			$id = $_POST['empID'];
+			$name = $_POST['empName'];
+			$age = $_POST['empAge'];
+			$address = $_POST['empAddress'];
+			$position = $_POST['empPosition'];
+
 include "config.php";
-include "employees.php";
 $conn = mysqli_connect($host,$user,$pass,$db);
 
 //check
@@ -17,40 +23,8 @@ $sql = "INSERT INTO employees VALUES('$id','$name','$age','$address','$position'
 
 //display
 $result = mysqli_query($conn,$sql);
-//return mysqli_affected_rows($result); //determine mysql function to check if the record was inserted or get the last inserted ID
-printf("Last inserted record has id %d\n", mysqli_insert_id($conn));
-
 }
-
-
-function view_Employees(){
-include "config.php";
-$conn = mysqli_connect($host,$user,$pass,$db);
-
-//check
-if( mysqli_connect_errno($conn) ){
-	echo "Error in DB";
-}else{
-	// echo "OK";
 }
-$sql = "SELECT * FROM employees WHERE id='".$_GET['id']."'";
-
-//display
-$result = mysqli_query($conn, $sql);
-
-$Employees = array();
-	if( $myrow=mysqli_fetch_array($result) ){
-			$info= array();
-			$info['id'] = $myrow['id'];
-			$info['name'] = $myrow['name'];
-			$info['age'] = $myrow['age'];
-			$info['address'] = $myrow['address'];
-			$info['position'] = $myrow['position'];
-			$Employees = $info;
-			}
-	return $Employees;
-}
-
 
 function delete_Employees(){
 include "config.php";
@@ -60,7 +34,6 @@ $conn = mysqli_connect($host,$user,$pass,$db);
 if( mysqli_connect_errno($conn) ){
 	echo "Error in DB";
 }else{
-	// echo "OK";
 }
 //prepare
 $sql = "DELETE FROM employees WHERE id=".$_GET['id'];
@@ -71,11 +44,6 @@ $result = mysqli_query($conn, $sql);
 display_Employees();
 }
 function display_Employees(){
-//OUTPUT REQT
-// return/display data:
-//	id,name,age
-
-//connect and select
 include "config.php";
 $conn = mysqli_connect($host,$user,$pass,$db);
 
@@ -83,7 +51,6 @@ $conn = mysqli_connect($host,$user,$pass,$db);
 if( mysqli_connect_errno($conn) ){
 	echo "Error in DB";
 }else{
-	// echo "OK";
 }
 //prepare
 $sql = "SELECT * FROM Employees";
@@ -104,10 +71,47 @@ $Employees = array();
 		}while($myrow=mysqli_fetch_array($result));
 	}
 	return $Employees;
- //print_r($Employees);
+}
+
+function view_Employee(){
+include "config.php";
+$conn = mysqli_connect($host,$user,$pass,$db);
+
+//check
+if( mysqli_connect_errno($conn) ){
+	echo "Error in DB";
+}else{
+}
+//prepare
+
+$id=$_GET['id'];
+$sql = "SELECT * FROM Employees where id=$id";
+
+//display 
+$result = mysqli_query($conn,$sql);
+
+$Employees = array();
+	if( $myrow=mysqli_fetch_array($result) ){
+		do{
+			$info= array();
+			$info['id'] = $myrow['id'];
+			$info['name'] = $myrow['name'];
+			$info['age'] = $myrow['age'];
+			$info['address'] = $myrow['address'];
+			$info['position'] = $myrow['position'];
+			$Employees[] = $info;
+		}while($myrow=mysqli_fetch_array($result));
+	}
+	return $Employees;
 }
 
 function update_Employees(){
+if( $_SERVER['REQUEST_METHOD']=='POST' ){
+			$emp = $_POST['empID'];
+			$name = $_POST['empName'];
+			$age = $_POST['empAge'];
+			$address = $_POST['empAddress'];
+			$position = $_POST['empPosition'];
 
 include "config.php";
 $conn = mysqli_connect($host,$user,$pass,$db);
@@ -116,11 +120,9 @@ $conn = mysqli_connect($host,$user,$pass,$db);
 if( mysqli_connect_errno($conn) ){
 	echo "Error in DB";
 }else{
-	// echo "OK";
 }
 //prepare
 	
-
 
 $sql = "UPDATE employees SET name='$name',age='$age',address='$address',position='$position' WHERE id='$id'";
 
@@ -128,8 +130,7 @@ $sql = "UPDATE employees SET name='$name',age='$age',address='$address',position
 $result = mysqli_query($conn,$sql);
 }
 
+}
 
-
-// display_Employees();
 
 ?>
