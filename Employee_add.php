@@ -7,6 +7,14 @@
 
 <script>
 function confirmSubmit(){
+	var ar= [document.addform.empID.value, document.addform.empName.value, document.addform.empAge.value, document.addform.empAddress.value, document.addform.empPosition.value];
+	var check=true;
+	for(var i=0;i<5;i++){
+		if((ar[i]).length==0){
+			check=false;
+		}
+	}
+	if(check)
 	alert("Employee has been successfully added! Go to Display Employees to see changes.");
 }
 </script>
@@ -26,23 +34,25 @@ function confirmSubmit(){
 	</div>
 	
 	<div id="content">
-	<form action="" method="post">
-				<h1>Add Employee</h1>
-				<p>Employee ID<br />
-					<input type="text" name="empID" required onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )){ alert('Numbers only!!'); return false; }" /></p>
-				<p>Employee Name<br />
-					<input type="text" name="empName" required /></p>
-				<p>Employee Age<br />
-					<input type="text" name="empAge" required onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )){ alert('Numbers only!!'); return false; }" /></p>
-				<p>Employee Address<br />
-					<input type="text" name="empAddress" required /></p>
-				<p>Employee Position<br />
-					<input type="text" name="empPosition" required /></p>
+		<br />	
+			<form name="addform" action="" method="post">
+				<h1>Add Employee</h1><br />
+				<p>Employee ID:<br />
+					<input type="text" name="empID" required onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )){ alert('Numbers only!!'); return false; }" /></p><br />
+				<p>Employee Name:<br />
+					<input type="text" name="empName" required /></p><br />
+				<p>Employee Age:<br />
+					<input type="text" name="empAge" required onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )){ alert('Numbers only!!'); return false; }" /></p><br />
+				<p>Employee Address:<br />
+					<input type="text" name="empAddress" required /></p><br />
+				<p>Employee Position:<br />
+					<input type="text" name="empPosition" required /></p><br />
 	
 			<p>
-				<input type="submit" value="Add" onclick="return confirmSubmit();"/>
+				<input type="submit" value="Add" onclick="confirmSubmit();"/>
 				<input type="reset" value="Clear" />
 			</p>
+			<br />
 			<p><a href="employees.php">Back to Home<a/></p>
 			</form>
 	</div>
